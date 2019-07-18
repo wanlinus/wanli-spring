@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="cn.wanli.spring.beans.BeanFactoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-07-18T13:21:39" hostname="WANLISTATION" time="0.004">
+  <properties/>
+  <testcase name="test" classname="cn.wanli.spring.beans.BeanFactoryTest" time="0.004"/>
+  <system-out><![CDATA[Hello Spring
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
