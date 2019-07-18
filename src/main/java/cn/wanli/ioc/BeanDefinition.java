@@ -1,4 +1,4 @@
-package cn.wanli.ioc.beans;
+package cn.wanli.ioc;
 
 /**
  * @author wanli
@@ -11,6 +11,8 @@ public class BeanDefinition {
     private Class beanClass;
 
     private String beanClassName;
+
+    private PropertyValues propertyValues;
 
     public void setBean(Object bean) {
         this.bean = bean;
@@ -39,5 +41,13 @@ public class BeanDefinition {
 
     public Object getBean() {
         return bean;
+    }
+
+    public PropertyValues getPropertyValues() {
+        return propertyValues;
+    }
+
+    public void setPropertyValues(PropertyValues propertyValues) {
+        this.propertyValues = propertyValues;
     }
 }

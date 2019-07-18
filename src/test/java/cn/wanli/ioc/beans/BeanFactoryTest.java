@@ -1,5 +1,8 @@
 package cn.wanli.ioc.beans;
 
+import cn.wanli.ioc.BeanDefinition;
+import cn.wanli.ioc.PropertyValue;
+import cn.wanli.ioc.PropertyValues;
 import cn.wanli.ioc.factory.AutowireCapableBeanFactory;
 import cn.wanli.ioc.factory.BeanFactory;
 import org.junit.Test;
@@ -11,13 +14,20 @@ import org.junit.Test;
 public class BeanFactoryTest {
 
     @Test
-    public void test() {
+    public void test() throws Exception {
         //1. 初始化beanFactory
         BeanFactory factory = new AutowireCapableBeanFactory();
 
-        //2. 注入Bean
+        // 2.bean定义
         BeanDefinition beanDefinition = new BeanDefinition();
-        beanDefinition.setBeanClassName("cn.wanli.ioc.beans.beans.HelloBean");
+        beanDefinition.setBeanClass(HelloBean.class);
+
+        // 3.设置属性
+        PropertyValues propertyValues = new PropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("text", "Hello Bean"));
+        beanDefinition.setPropertyValues(propertyValues);
+
+        // 4.生成bean
         factory.registerBeanDefinition("helloBean", beanDefinition);
 
         //3. 获取Bean

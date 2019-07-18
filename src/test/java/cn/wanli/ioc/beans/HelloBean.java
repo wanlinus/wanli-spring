@@ -5,7 +5,14 @@ package cn.wanli.ioc.beans;
  * @date 2019-07-18 21:19
  */
 public class HelloBean {
+
+    private String text;
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public void hellworld() {
-        System.out.println("Hello Spring");
+        System.out.println(text);
     }
 }

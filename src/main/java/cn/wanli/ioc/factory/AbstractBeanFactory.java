@@ -1,6 +1,6 @@
 package cn.wanli.ioc.factory;
 
-import cn.wanli.ioc.beans.BeanDefinition;
+import cn.wanli.ioc.BeanDefinition;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,18 +11,18 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class AbstractBeanFactory implements BeanFactory {
 
-    private Map<String, BeanDefinition> beans = new ConcurrentHashMap<>();
+    private Map<String, BeanDefinition> beansMap = new ConcurrentHashMap<>();
 
     @Override
     public Object getBean(String name) {
-        return beans.get(name).getBean();
+        return beansMap.get(name).getBean();
     }
 
     @Override
-    public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
+    public void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception {
         Object bean = doCreateBean(beanDefinition);
         beanDefinition.setBean(bean);
-
+        beansMap.put(name, beanDefinition);
     }
 
     /**
@@ -31,5 +31,5 @@ public abstract class AbstractBeanFactory implements BeanFactory {
      * @param beanDefinition
      * @return
      */
-    protected abstract Object doCreateBean(BeanDefinition beanDefinition);
+    protected abstract Object doCreateBean(BeanDefinition beanDefinition) throws Exception;
 }

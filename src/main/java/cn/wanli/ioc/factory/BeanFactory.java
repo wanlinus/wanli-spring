@@ -1,6 +1,6 @@
 package cn.wanli.ioc.factory;
 
-import cn.wanli.ioc.beans.BeanDefinition;
+import cn.wanli.ioc.BeanDefinition;
 
 /**
  * @author wanli
@@ -22,7 +22,7 @@ public interface BeanFactory {
      * @param name           bean name
      * @param beanDefinition bean 定义
      */
-    void registerBeanDefinition(String name, BeanDefinition beanDefinition);
+    void registerBeanDefinition(String name, BeanDefinition beanDefinition) throws Exception;
 
 
 }
