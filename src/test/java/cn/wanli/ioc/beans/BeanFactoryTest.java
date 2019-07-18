@@ -1,11 +1,13 @@
 package cn.wanli.ioc.beans;
 
 import cn.wanli.ioc.BeanDefinition;
-import cn.wanli.ioc.PropertyValue;
-import cn.wanli.ioc.PropertyValues;
 import cn.wanli.ioc.factory.AutowireCapableBeanFactory;
 import cn.wanli.ioc.factory.BeanFactory;
+import cn.wanli.ioc.io.ResourceLoader;
+import cn.wanli.ioc.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
+
+import java.util.Map;
 
 /**
  * @author wanli
@@ -15,23 +17,17 @@ public class BeanFactoryTest {
 
     @Test
     public void test() throws Exception {
-        //1. 初始化beanFactory
-        BeanFactory factory = new AutowireCapableBeanFactory();
+        //1. 读取配置文件
+        XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
+        xmlBeanDefinitionReader.loadBeanDefinitions("beans.xml");
 
-        // 2.bean定义
-        BeanDefinition beanDefinition = new BeanDefinition();
-        beanDefinition.setBeanClass(HelloBean.class);
-
-        // 3.设置属性
-        PropertyValues propertyValues = new PropertyValues();
-        propertyValues.addPropertyValue(new PropertyValue("text", "Hello Bean"));
-        beanDefinition.setPropertyValues(propertyValues);
-
-        // 4.生成bean
-        factory.registerBeanDefinition("helloBean", beanDefinition);
-
-        //3. 获取Bean
-        HelloBean bean = (HelloBean) factory.getBean("helloBean");
-        bean.hellworld();
+        // 2.初始化BeanFactory并注册
+        BeanFactory beanFactory = new AutowireCapableBeanFactory();
+        for (Map.Entry<String, BeanDefinition> entry : xmlBeanDefinitionReader.getRegistry().entrySet()) {
+            beanFactory.registerBeanDefinition(entry.getKey(), entry.getValue());
+        }
+        // 3.获取bean
+        HelloBean helloBean = (HelloBean) beanFactory.getBean("beanHello");
+        helloBean.hellworld();
     }
 }

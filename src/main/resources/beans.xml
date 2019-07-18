@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean name="beanHello" class="cn.wanli.ioc.beans.HelloBean">
+        <property name="text" value="Hello woadasd"/>
+    </bean>
+</beans>
