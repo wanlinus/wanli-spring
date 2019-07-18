@@ -1,4 +1,4 @@
-package cn.wanli.spring.beans;
+package cn.wanli.ioc.beans;
 
 /**
  * @author wanli
